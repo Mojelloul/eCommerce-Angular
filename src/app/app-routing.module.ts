@@ -1,3 +1,4 @@
+import { UserAuthGuard } from './guards/user-auth.guard';
 import { CartResolverService } from './resolvers/cart-resolver.service';
 import { ProfileResolverService } from './resolvers/profile-resolver.service';
 import { AdminModule } from './admin/admin.module';
@@ -16,6 +17,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { ProductResolverService } from './resolvers/product-resolver.service';
 import { CategoryResolverService } from './resolvers/category-resolver.service';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 
 const routes: Routes = [
@@ -24,26 +26,30 @@ const routes: Routes = [
     component: HomeComponent
   }, 
   {
-    path:"admin", 
-    loadChildren:()=>import('./admin/admin-routing.module').then((a:any)=>a.AdminModule)
+    path:"admin",
+    canActivate:[AdminAuthGuard],
+    loadChildren:()=>import('./admin/admin.module').then((a:any)=>a.AdminModule)
   }, 
   {
     path:"profile", 
     component: ProfileComponent,
     resolve:{
       profile:ProfileResolverService
-    }
+    },
+    canActivate:[UserAuthGuard]
   },  
   {
     path:"order", 
-    component: OrderComponent
+    component: OrderComponent,
+    canActivate:[UserAuthGuard]
   }, 
   {
     path:"cart", 
     component: CartComponent,
     resolve:{
       cart:CartResolverService
-    }
+    },
+    canActivate:[UserAuthGuard]
   }, 
   {
     path:"auth", 

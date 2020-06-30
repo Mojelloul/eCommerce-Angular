@@ -5,14 +5,17 @@ import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoryResolverService } from '../resolvers/category-resolver.service';
+import { AdminAuthGuard } from '../guards/admin-auth.guard';
 
 const routes: Routes = [
   {
     path:'',
+    canActivate:[AdminAuthGuard],
     children:[
       {
         path:'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate:[AdminAuthGuard]
         },
         {
           path:'management',
@@ -22,14 +25,16 @@ const routes: Routes = [
               component: ManageCategoriesComponent,
               resolve:{
                 categories:CategoryResolverService
-              }
+              },
+              canActivate:[AdminAuthGuard]
             },
             {
               path:'manage-users',
               component: ManageCategoriesComponent,
               resolve:{
                 allUsers:UserResolverService
-              }
+              },
+              canActivate:[AdminAuthGuard]
             },
           ]
           },
