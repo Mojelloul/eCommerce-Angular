@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
    modalRef:BsModalRef;
    @ViewChild('invalidCredentials', {static: true}) invCredentials: TemplateRef<any>;
   constructor(private authService:AuthService, private router:Router,private modalService:BsModalService,
-    private fb:FormBuilder,private alertService:AlertService, private cartService:CartService) { }
+    private fb:FormBuilder,private alertService:AlertService, private cartService:CartService) { 
+      if(this.authService.isLoggedIn())
+      this.router.navigate(['/home']);
+    }
 
   ngOnInit(): void {
     this.authCredentialsDto = this.fb.group({

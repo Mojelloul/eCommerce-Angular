@@ -11,6 +11,6 @@ export class CategoryResolverService implements Resolve<Category[]>{
 
   constructor(private categoryService:CategoryService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<Category[]> {
-    throw this.categoryService.getcategories();
+    return this.categoryService.getcategories();
   }
 }

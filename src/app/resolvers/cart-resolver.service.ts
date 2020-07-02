@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class CartResolverService implements Resolve<Cart> {
 
   constructor(private cartService:CartService, private authService:AuthService) { }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<Cart>{//v15
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<Cart>{
     if(this.authService.profile){
       return this.cartService.getCart(this.authService.profile.cartId);
     }

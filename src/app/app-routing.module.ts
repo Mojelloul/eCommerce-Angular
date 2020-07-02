@@ -1,3 +1,4 @@
+import { ContactComponent } from './components/contact/contact.component';
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { CartResolverService } from './resolvers/cart-resolver.service';
 import { ProfileResolverService } from './resolvers/profile-resolver.service';
@@ -33,22 +34,26 @@ const routes: Routes = [
   {
     path:"profile", 
     component: ProfileComponent,
-    resolve:{
-      profile:ProfileResolverService
-    },
+    // resolve:{
+    //   profile:ProfileResolverService
+    // },
     canActivate:[UserAuthGuard]
   },  
   {
     path:"order", 
     component: OrderComponent,
     canActivate:[UserAuthGuard]
+  },   
+  {
+    path:"contact", 
+    component: ContactComponent
   }, 
   {
     path:"cart", 
     component: CartComponent,
-    resolve:{
-      cart:CartResolverService
-    },
+    // resolve:{
+    //   cart:CartResolverService
+    // },
     canActivate:[UserAuthGuard]
   }, 
   {
@@ -66,9 +71,9 @@ const routes: Routes = [
   {
     path:"products", 
     component: ProductListComponent,
-    resolve:{
-      products:ProductResolverService
-    }
+    // resolve:{
+    //   products:ProductResolverService
+    // }
   }, 
   {
     path:"products/:id", 
@@ -77,9 +82,9 @@ const routes: Routes = [
   {
     path:"categories", 
     component: CategoryListComponent,
-    resolve:{
-      categories:CategoryResolverService
-    }
+    // resolve:{
+    //   categories:CategoryResolverService
+    // }
   }, 
   {
     path:"categories/:id", 
