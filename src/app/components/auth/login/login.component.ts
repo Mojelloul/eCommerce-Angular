@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
    showPass = true;
    modalRef:BsModalRef;
    @ViewChild('invalidCredentials', {static: true}) invCredentials: TemplateRef<any>;
+   
   constructor(private authService:AuthService, private router:Router,private modalService:BsModalService,
     private fb:FormBuilder,private alertService:AlertService, private cartService:CartService) { 
       if(this.authService.isLoggedIn())
@@ -32,12 +33,9 @@ export class LoginComponent implements OnInit {
   userLogin(){
     this.authService.login(this.authCredentialsDto.value).subscribe(
       res=>{
-        localStorage.setItem('token',res.accessToken);
+        localStorage.setItem("token", res.accessToken);
         this.authService.prepareUserData();
-        this.authService.getCurrentUser().subscribe(resUser=>{
-          this.authService.currentUser=resUser;
-        });
-        this.router.navigate(['/home']);
+        this.router.navigate([`/home`]);
       },
       error=>{
         this.alertService.error(error);

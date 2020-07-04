@@ -1,3 +1,4 @@
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { UserResolverService } from './../resolvers/user-resolver.service';
 import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -30,7 +31,7 @@ const routes: Routes = [
             },
             {
               path:'manage-users',
-              component: ManageCategoriesComponent,
+              component: ManageUsersComponent,
               resolve:{
                 allUsers:UserResolverService
               },

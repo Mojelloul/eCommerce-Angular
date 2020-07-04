@@ -37,7 +37,7 @@ const routes: Routes = [
     // resolve:{
     //   profile:ProfileResolverService
     // },
-    canActivate:[UserAuthGuard]
+    // canActivate:[UserAuthGuard]
   },  
   {
     path:"order", 
